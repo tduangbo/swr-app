@@ -1,6 +1,8 @@
 import React from 'react'
 import useSWR from 'swr'
-import { Pokemon } from './components/Pokemon'
+import { Pokemon } from './components/Pokemon';
+import { useRequest } from './useRequest';
+
 
 //const url = 'https://pokeapi.co/api/v2/pokemon'
 
@@ -8,7 +10,8 @@ import { Pokemon } from './components/Pokemon'
 const url =  'https://pokeapi.co/api/v2/pokemon';
 
 function App() {
-    const { data: result, error } = useSWR(url)
+   // const { data: result, error } = useSWR(url)
+   const { data: result, error } = useRequest('/pokemon');
 
     if (error) return <h1>Something went wrong!</h1>
     if (!result) return <h1>Loading...</h1>

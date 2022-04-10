@@ -1,13 +1,9 @@
 import React from 'react'
-import useSWR from 'swr'
-
-//const fetcher = (...args) => fetch(...args).then((res) => res.json())
+import { useRequest } from '../useRequest'
 
 export const Pokemon = ({ pokemon }) => {
     const { name } = pokemon
-    const url = 'https://pokeapi.co/api/v2/pokemon/' + name
-
-    const { data, error } = useSWR(url)
+    const { data, error } = useRequest('/pokemon', name)
 
     if (error) return <h1>Something went wrong!</h1>
     if (!data) return <h1>Loading...</h1>
